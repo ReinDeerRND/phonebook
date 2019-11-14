@@ -1,0 +1,23 @@
+{
+  "name": "expressapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elina Popeluna",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
+
+
+// "name": "express-api",
+//   "version": "1.0.0",
+//   "description": "Node.js and Express REST API",
+//   "main": "index.js",
+//   "scripts": {
+//     "test": "echo \"Error: no test specified\" && exit 1"
+//   },
+//   "author": "Tania Rascia",
+//   "license": "MIT"

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html >
+ 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+     <script src="https://unpkg.com/vue"></script>
+     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Моя телефонная книга</title>
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="book" id="vueapp">
+            <h3>Моя телефонная книга</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Имя</th>
+                  <th scope="col">Телефон</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="person in persons">
+                  <td>{{person.name}}</td>
+                  <td>{{person.number}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+        <div class="add">
+            <form action="http://localhost:3000/users" method="post">
+                <h3>Добавить номер в книгу</h3>
+                <br>
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Имя контакта</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Введите имя" aria-label="Username" aria-describedby="basic-addon1" name="name">
+                </div>
+                <br>
+                <div class="input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Телефонный номер</span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Введите телефонный номер" aria-label="Username" aria-describedby="basic-addon1" name="number">
+                </div>
+                <br>
+                <input type="submit" class="btn btn-light" value="Добавить">
+
+            </form>
+        </div>
+    </div>
+    
+ 
+</body>
+
+ <script type="text/javascript">
+
+var vueapp = new Vue({
+        el: '#vueapp',
+        data: {
+            persons: []
+        }           
+    });
+
+
+function getData(){
+
+  $.getJSON("./users", function(result){
+      vueapp.persons=result;
+  });
+    // var xhr = new XMLHttpRequest(); //old version
+    // xhr.open('GET', './users', false);
+    // xhr.send();
+    // if (xhr.status != 200) {
+    //   alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+    // } else {
+    //   vueapp.persons= JSON.parse(xhr.responseText); 
+    // }
+}
+
+getData();
+ </script>
+
+</html>
